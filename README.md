@@ -1,5 +1,3 @@
-Certainly, here's a simplified README for your Terraform project:
-
 # Terraform AWS Infrastructure Setup
 
 This Terraform project is designed to create an AWS infrastructure with a clear separation between a public subnet and a private subnet. The project allows you to deploy resources in a modular and organized way, making it easy to manage and understand the components.
@@ -50,7 +48,3 @@ For more information on Terraform and AWS, refer to their official documentation
 
 - [Terraform Documentation](https://www.terraform.io/docs/index.html)
 - [AWS Documentation](https://docs.aws.amazon.com/)
-
----
-
-This README provides a high-level overview of the project's purpose, structure, and basic usage. Make sure to consult the module-specific README files for more detailed information and configuration options.
