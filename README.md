@@ -1,76 +1,56 @@
-```markdown
-# AWS VPC Setup with Public and Private Subnets
+Certainly, here's a simplified README for your Terraform project:
 
-This Terraform configuration sets up an Amazon Web Services (AWS) Virtual Private Cloud (VPC) with both public and private subnets. It also includes the creation of EC2 instances in these subnets.
+# Terraform AWS Infrastructure Setup
 
-## Prerequisites
+This Terraform project is designed to create an AWS infrastructure with a clear separation between a public subnet and a private subnet. The project allows you to deploy resources in a modular and organized way, making it easy to manage and understand the components.
 
-- [Terraform](https://www.terraform.io/downloads.html) installed on your local machine.
-- AWS CLI installed and configured with your AWS credentials.
+## Purpose
+
+The main goal of this project is to establish a VPC with public and private subnets, enabling the deployment of different types of services within AWS:
+
+- **Public Subnet**: In this subnet, you can launch EC2 instances that need direct internet access. An Internet Gateway is connected to this subnet, providing internet connectivity.
+
+- **Private Subnet**: For services that require a private network and secure outbound internet access, this subnet is connected to a NAT Gateway, allowing EC2 instances to access the internet through Network Address Translation.
+
+## Project Structure
+
+The project is organized into modules for clear separation of responsibilities:
+
+- **Network Module**: This module handles the VPC, public and private subnets, Internet Gateway, and Route Tables.
+
+- **NAT Gateway Module**: Manages the creation of the NAT Gateway and Elastic IP.
+
+- **Security Group Module**: Defines the security group used by EC2 instances for controlling inbound and outbound traffic.
+
+- **EC2 Instance Module**: Launches EC2 instances in both the public and private subnets.
 
 ## Usage
 
-1. Clone this repository to your local machine:
+1. Clone this repository to your local environment.
 
-   ```bash
-   git clone <repository-url>
-   ```
+2. Update the necessary variables in each module according to your specific requirements.
 
-2. Navigate to the project directory:
+3. Run `terraform init` to initialize the Terraform environment.
 
-   ```bash
-   cd <project-directory>
-   ```
+4. Execute `terraform plan` to review the changes Terraform will make.
 
-3. Create a `terraform.tfvars` file in the project directory and provide your own values for variables like `aws_region`, `key_name`, and any other necessary variables. Here's an example:
+5. If the plan looks good, apply the changes with `terraform apply`.
 
-   ```hcl
-   aws_region = "us-east-1"
-   key_name = "your-ec2-key-pair-name"
-   ```
-
-4. Initialize the Terraform working directory:
-
-   ```bash
-   terraform init
-   ```
-
-5. Review and apply the Terraform plan:
-
-   ```bash
-   terraform apply
-   ```
-
-6. After the infrastructure is created, Terraform will output the public and private EC2 instance IDs. You can use these to SSH into your instances.
-
-7. When you're done using the infrastructure, you can destroy it:
-
-   ```bash
-   terraform destroy
-   ```
-
-## Configuration
-
-- The Terraform configuration creates a VPC with a public and a private subnet.
-- It associates the public subnet with a Route Table that routes traffic through an Internet Gateway.
-- It associates the private subnet with a Route Table that routes traffic through a NAT Gateway.
-- Two EC2 instances are launched, one in the public subnet and another in the private subnet.
-- Security group rules are configured to allow incoming SSH (port 22) traffic and allow all outgoing traffic.
+6. Follow the prompts to confirm the changes.
 
 ## Customization
 
-You can customize the following variables in the `terraform.tfvars` file or directly in the Terraform configuration files:
+Feel free to customize this project to fit your specific needs. You can adjust variables, security group rules, and instance types to match your use case.
 
-- `aws_region`: Set your desired AWS region.
-- `key_name`: Provide the name of your EC2 key pair.
-- Instance type, AMI, and other instance settings in the EC2 resource blocks.
-- Security group rules in the `aws_security_group` resource.
+## Cleanup
 
-## License
+To remove the resources created by this project, use `terraform destroy` after making sure that you no longer need them.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+For more information on Terraform and AWS, refer to their official documentation:
 
-Replace `<repository-url>` and `<project-directory>` with your repository URL and project directory name. Additionally, customize the `terraform.tfvars` example with your AWS region and key pair name.
+- [Terraform Documentation](https://www.terraform.io/docs/index.html)
+- [AWS Documentation](https://docs.aws.amazon.com/)
 
-This README template includes sections for prerequisites, usage, configuration, customization, and licensing. You can use it as a starting point for your own README.md file.
+---
+
+This README provides a high-level overview of the project's purpose, structure, and basic usage. Make sure to consult the module-specific README files for more detailed information and configuration options.
